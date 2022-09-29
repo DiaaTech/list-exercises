@@ -1,8 +1,12 @@
 package diaatech;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 public class Exercises {
 
@@ -16,13 +20,15 @@ public class Exercises {
 	 array2List( {"Red", "Orange", "Yellow"} )  ->  ["Red", "Orange", "Yellow"]
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"] 
 	 */
-	public List<String> array2List(String[] stringArray) {
+	public List array2List(String[] stringArray) {
 		
-		List<String> stringList  = new ArrayList<String>();
-		
-		return new ArrayList<String>();
+		 List<String> stringList = new ArrayList<String>();
+		 
+		 for (int i = 0; i < stringArray.length; i++) {
+			 stringList.add(stringArray[i]);
+		 }
+		 return stringList;
 	}
-	
 	/*
 	 Given a list of Strings, return an array containing the same Strings in the same order 
 	 list2Array( ["Apple", "Orange", "Banana"] )  ->  {"Apple", "Orange", "Banana"}
@@ -30,11 +36,14 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
-		
-		String[] stringArray1 = new String[stringList.size()];
-		
-		return stringArray1;
-	}
+			
+	String[] stringArray1 = new String[stringList.size()];
+
+    for (int i = 0; i < stringList.size() ; i++) {
+        stringArray1[i] = stringList.get(i);
+         }
+       return stringArray1;
+          }
 	
 	/*
 	 Given an array of Strings, return an ArrayList containing the same Strings in the same order 
@@ -45,30 +54,36 @@ public class Exercises {
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
 		
-		List<String> no4LetterWordsString = new ArrayList<String>();
+		List<String> no4LetterWords = new ArrayList<String>();
+	
+			for (String string : stringArray) {
+			    if (string.contains(string)) {
+			    	no4LetterWords.add(string);
+			    }
+			 	}
+	
+		 return no4LetterWords;
 		
-		return no4LetterWordsString;
 	}
 
 
 	/*
-	 Given a List of Strings, return a new list in reverse order of the original. One obvious solution is to
-	 simply loop through the original list in reverse order, but see if you can come up with an alternative
-	 solution. (Hint: Think LIFO (i.e. stack))
+	 Given a List of Strings, return a new list in reverse order of the original.
+	  One obvious solution is to simply loop through the original list in reverse order,
+	   but see if you can come up with an alternative solution. 
+	   (Hint: Think LIFO (i.e. stack))
 	 reverseList( ["purple", "green", "blue", "yellow", "green" ])  -> ["green", "yellow", "blue", "green", "purple" ]
 	 reverseList( ["jingle", "bells", "jingle", "bells", "jingle", "all", "the", "way"} )
 		-> ["way", "the", "all", "jingle", "bells", "jingle", "bells", "jingle"]
 	 */
 	public List<String> reverseList(List<String> stringList) {
 		
-		List<String> reversedList = new ArrayList<String>();
-		
-		//make a new stack from the array list,-----> know why?
-		Stack<String> stackList = new Stack<String>();
-		stackList.addAll(stringList);
-		
+		List<String> reversedList = new ArrayList<>();
+		for(int i=stringList.size()-1;i>=0;i--) {
+			reversedList.add(stringList.get(i));
+		}
 		return reversedList;
-	}
+	    }
 
 	/*
 	 Given an array of ints, divide each int by 2, and return an ArrayList of Doubles.
@@ -79,7 +94,9 @@ public class Exercises {
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
 		
 		List<Double> doubleList = new ArrayList<Double>();
-		
+		for(int i=0;i<intArray.length;i++) {
+			doubleList.add((double) (intArray.length/2));
+		}
 		return doubleList;
 	}
 	
@@ -90,9 +107,11 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 64362
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		
 		int largest = 0;
-		
+	     for (Integer integer : integerList) {
+		     if (integer > largest)
+		        largest = integer;
+		}
 		return largest;
 	}
 	
@@ -105,28 +124,36 @@ public class Exercises {
 	public List<Integer> oddOnly(Integer[] integerArray) {
 		
 		List<Integer> oddIntegersList = new ArrayList<Integer>();
-		
-		return oddIntegersList;
-	}
+		 for(int i=0;i<integerArray.length;i++) {
+			 if(integerArray[i] % 2 != 0){
+			   oddIntegersList.add(integerArray[i]) ;
+			   }
+		       }
+		   return oddIntegersList;
+	       }
 	
 	/* 
-	 Given a List of Integers, and an int value, return true if the int value appears two or more times in 
-	 the list.
+	 Given a List of Integers, and an int value, return true if the int value appears 
+	 two or more times in  the list.
 	 foundIntTwice( [5, 7, 9, 5, 11], 5 ) -> true
 	 foundIntTwice( [6, 8, 10, 11, 13], 8 -> false
 	 foundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
-		
-		int count = 0;
-		
-		return false;
-	}
+			int count = 0;	
+			 for(int i=0;i<integerList.size();i++) {
+			
+				 integerList.add(0);
+			 
+			 }
+			return false;
+		}
 	
 	/*
-	 Given an array of Integers, return a List that contains the same Integers (as Strings). Except any multiple of 3
-   should be replaced by the String "Fizz", any multiple of 5 should be replaced by the String "Buzz",
-   and any multiple of both 3 and 5 should be replaced by the String "FizzBuzz"
+	 Given an array of Integers, return a List that contains the same Integers (as Strings).
+	  Except any multiple of 3 should be replaced by the String "Fizz", 
+	  any multiple of 5 should be replaced by the String "Buzz", 
+	  and any multiple of both 3 and 5 should be replaced by the String "FizzBuzz"
    ** INTERVIEW QUESTION **	 
    
    fizzBuzzList( {1, 2, 3} )  ->  [1, 2, "Fizz"]
@@ -138,10 +165,19 @@ public class Exercises {
 	public List<String> fizzBuzzList(Integer[] integerArray) {
 		
 		List<String> fizzBuzzListString = new ArrayList<String>();
+		for(int i=0;i<integerArray.length;i++) {
+			if(integerArray[i] % 3 != 0){
+				fizzBuzzListString.add(i, "Fizz");
+			}
+				if(integerArray[i] % 5 != 0){
+					fizzBuzzListString.add(i, "Buzz");	
+				   }
+		}
 		
 		return fizzBuzzListString;
-	}
-
+	
+		}
+	
 	/*
 	 Given two lists of Integers, interleave them beginning with the first element in the first list followed
 	 by the first element of the second. Continue interleaving the elements until all elements have been interwoven.
